@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
 import authRouter from './routers/auth.js'
 import updateRouter from './routers/update.js'
-
+import cors from 'cors'
 const app=express();
 const connect=async ()=>{
     try{
@@ -26,6 +26,7 @@ mongoose.connection.on("connected",()=>{
 app.get("/",(req,res)=>{
     res.send("hello")
 })
+app.use(cors());
 app.use(cookieParser())
 app.use(express.json());
 app.use("/auth",authRouter)
